@@ -116,7 +116,15 @@ Nach der Auswahl der relevanten Einträge werden zur Vorverarbeitung der Rohtext
 durchgeführt: Konvertierung in Kleinbuchstaben, Entfernung von Sonderzeichen, URLs und Zahlen,
 Tokenisierung, Entfernung von Stoppwörtern sowie Lemmatisierung.
 
-% TODO: Vektorisierung und Themenextraktion
+Zur Vektorisierung der bereinigten Texte werden aus den in \cref{tab:vektorisierung} verglichenen
+Methoden zwei Ansätze ausgewählt: \textit{TF-IDF} und \textit{Word2Vec}. Wie \textcite{wang2020empirical}
+zeigen, liefern einfachere Repräsentationen bei verrauschten Texten teils vergleichbare Ergebnisse wie
+komplexere Modelle. TF-IDF eignet sich als frequenzbasierte, dünnbesetzte Darstellung besonders gut
+als direkter Input für Topic Models. Word2Vec erzeugt ergänzend dichte semantische Vektoren,
+die Bedeutungsähnlichkeiten zwischen Wörtern abbilden. Der Vergleich beider Ansätze ermöglicht eine
+Bewertung, welche Repräsentation für die Themenextraktion bessere Ergebnisse liefert.
+
+% TODO: Themenextraktion
 
 % ============================================================
 % LITERATURVERZEICHNIS
@@ -158,6 +166,42 @@ Twitter Airline Sentiment \parencite{crowdflower2015} & $\sim$14k & EN & CC BY-N
 515K Hotel Reviews Europe \parencite{jiashen2017hotel} & $\sim$515k & EN/DE & CC0 & Sehr groß; pos./neg. getrennt; gut für Topic Modeling & Tourismus; kein Behördenbezug; gemischtsprachig \\
 \hline
 311 Service Requests NYC \parencite{nyc311} & {>}\,10\,Mio. & EN & Public Domain & Echte Bürgerbeschwerden an Stadt; starke Metadaten & Wenig Freitext; sehr groß und unhandlich \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Anhang B: Vergleich von Vektorisierungsmethoden}
+
+\begin{table}[H]
+\centering
+\caption{Vergleich gängiger Vektorisierungsmethoden für Textdaten \parencite{wang2020empirical}}
+\label{tab:vektorisierung}
+\footnotesize
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.2cm} p{2.0cm} p{3.2cm} p{3.2cm} p{2.2cm}}
+\toprule
+\textbf{Methode} & \textbf{Typ} & \textbf{Pro} & \textbf{Kontra} & \textbf{Bibliothek} \\
+\midrule
+Bag of Words (BoW) & Dünnbesetzt, frequenzbasiert & Einfach; gut interpretierbar; schnell & Keine Gewichtung der Relevanz; hohe Dimensionalität; kein Kontext & \texttt{scikit-learn} \\
+\hline
+TF-IDF & Dünnbesetzt, gewichtet & Gewichtet Relevanz im Korpus; direkter Input für LDA/NMF; bewährt & Keine semantische Ähnlichkeit; hohe Dimensionalität & \texttt{scikit-learn} \\
+\hline
+LDA & Dünnbesetzt, themenbasiert & Erfasst latente Themenstruktur; interpretierbar & Primär Topic Model; weniger geeignet als reine Vektorisierung & \texttt{gensim} \\
+\hline
+Word2Vec & Dicht, semantisch & Erfasst Bedeutungsähnlichkeiten; kompakte Vektoren & Aggregation auf Dokumentebene nötig; große Trainingsmenge & \texttt{gensim} \\
+\hline
+Doc2Vec & Dicht, dokumentbasiert & Direkte Dokumentvektoren; erfasst Semantik auf Dokumentebene & Trainingsaufwand; Ergebnisse schwer interpretierbar & \texttt{gensim} \\
+\hline
+GloVe & Dicht, semantisch & Vortrainierte Vektoren verfügbar; gute Wortähnlichkeiten & Kein Training auf eigenem Korpus; Aggregation nötig & \texttt{gensim} / manuell \\
+\hline
+FastText & Dicht, subwortbasiert & Umgang mit unbekannten Wörtern; morphologisch robust & Höherer Speicherbedarf; Aggregation nötig & \texttt{gensim} \\
+\hline
+ELMo & Dicht, kontextuell & Kontextabhängige Wortvektoren; erfasst Polysemie & Hoher Rechenaufwand; langsam; veraltend & \texttt{allennlp} \\
+\hline
+BERT & Dicht, kontextuell & State-of-the-Art-Sprachverständnis; vortrainiert & Sehr hoher Rechenaufwand; Blackbox; Feintuning oft nötig & \texttt{transformers} \\
+\hline
+Sentence-BERT & Dicht, satzbasiert & Direkte Satzvektoren; semantisch hochwertig; effizient & Rechenaufwand höher als klassische Methoden; weniger interpretierbar & \texttt{sentence-trans\-formers} \\
 \bottomrule
 \end{tabular}
 \end{table}
