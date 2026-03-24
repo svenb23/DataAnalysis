@@ -6,6 +6,10 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{makecell}
+\renewcommand\theadfont{\bfseries\small}
 \usepackage{amsmath}
 \usepackage{float}
 
@@ -42,6 +46,7 @@
   filecolor=black,
   urlcolor=blue
 ]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -49,12 +54,12 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot[C]{\thepage}
 
+\usepackage[german=quotes]{csquotes}
+
 \usepackage[backend=biber, style=apa]{biblatex}
 \addbibresource{references.bib}
 
 \usepackage{titling}
-
-\usepackage[german=quotes]{csquotes}
 
 \usepackage{listings}
 \usepackage{xcolor}
@@ -100,10 +105,15 @@
 % ============================================================
 \section{Konzeptdarstellung}
 
-% TODO: Konzepttext hier einfügen (~200 Wörter, ca. 1/2 Seite)
-% Die folgenden 5 Punkte müssen abgedeckt werden:
+Im Rahmen einer Evaluation verschiedener öffentlich verfügbarer Datensätze (siehe \cref{tab:datenquellen} im Anhang) wurde
+die \textit{Consumer Complaint Database} der US-amerikanischen Verbraucherschutzbehörde CFPB als Datengrundlage
+ausgewählt \parencite{cfpb2024}. Der Datensatz enthält über eine Million echte Verbraucherbeschwerden zu Finanzprodukten 
+mit einem Freitextfeld (\textit{Consumer Complaint Narrative}) und kommt dem beschriebenen Szenario, 
+Beschwerden von Bürgern an eine öffentliche Institution, am nächsten.
 
-% 1. Gewählte Datenquelle und Begründung
+
+% Die folgenden Punkte müssen noch abgedeckt werden:
+
 % 2. Vorverarbeitung der Daten (Preprocessing)
 % 3. Mind. 2 Vektorisierungsmethoden
 % 4. Mind. 2 Techniken zur Themenextraktion
@@ -111,9 +121,47 @@
 
 
 % ============================================================
-% LITERATURVERZEICHNIS (optional für Phase 1)
+% LITERATURVERZEICHNIS
 % ============================================================
-% \newpage
-% \printbibliography[title=Literaturverzeichnis]
+\newpage
+\printbibliography[title=Literaturverzeichnis]
+
+% ============================================================
+% ANHANG
+% ============================================================
+\newpage
+\appendix
+\section*{Anhang}
+\addcontentsline{toc}{section}{Anhang}
+
+\subsection*{Anhang A: Vergleich potenzieller Datenquellen}
+
+\begin{table}[H]
+\centering
+\caption{Vergleich evaluierter Datenquellen für das NLP-Projekt}
+\label{tab:datenquellen}
+\footnotesize
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm} c c p{1.6cm} p{3.0cm} p{3.0cm}}
+\toprule
+\textbf{Datensatz} & \textbf{Größe} & \textbf{Spr.} & \textbf{Lizenz} & \textbf{Pro} & \textbf{Kontra} \\
+\midrule
+Consumer Complaint Database \parencite{cfpb2024} & {>}\,1\,Mio. & EN & Public Domain & Echte Beschwerden an Behörde; Freitextfeld; starke Metadaten; sehr nah am Szenario & Nur EN; Freitext nur bei Zustimmung; sensible Daten möglich \\
+\hline
+Amazon Fine Food Reviews \parencite{mcauley2013amzn} & $\sim$500k & EN & CC0 & Großer Umfang; Bewertungsscore; gut dokumentiert & Produktbewertungen; thematisch weit vom Szenario \\
+\hline
+Yelp Open Dataset \parencite{yelp2024} & {>}\,8\,Mio. & EN & Academic Use & Sehr groß; vielfältig; etabliert in NLP-Forschung & Restriktive Lizenz; JSON-Format; Restaurant-Fokus \\
+\hline
+Trustpilot Comments Ratings \parencite{trustpilot2024} & $\sim$1,65\,Mio. & EN & CC0 & Sehr groß; echte Kundenbewertungen mit Rating (1--5); ideal für Topic Modeling & Nur 2 Spalten (Text, Rating); kein Behördenbezug; überwiegend positive Reviews \\
+\hline
+Twitter Airline Sentiment \parencite{crowdflower2015} & $\sim$14k & EN & CC BY-NC-SA & Beschwerdetexte; Sentiment-Labels; NLP-Lehre & Sehr klein; nur Airlines; Kurztexte \\
+\hline
+515K Hotel Reviews Europe \parencite{jiashen2017hotel} & $\sim$515k & EN/DE & CC0 & Sehr groß; pos./neg. getrennt; gut für Topic Modeling & Tourismus; kein Behördenbezug; gemischtsprachig \\
+\hline
+311 Service Requests NYC \parencite{nyc311} & {>}\,10\,Mio. & EN & Public Domain & Echte Bürgerbeschwerden an Stadt; starke Metadaten & Wenig Freitext; sehr groß und unhandlich \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \end{document}
