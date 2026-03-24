@@ -107,18 +107,16 @@
 
 Im Rahmen einer Evaluation verschiedener öffentlich verfügbarer Datensätze (siehe \cref{tab:datenquellen} im Anhang) wurde
 die \textit{Consumer Complaint Database} der US-amerikanischen Verbraucherschutzbehörde CFPB als Datengrundlage
-ausgewählt \parencite{cfpb2024}. Der Datensatz enthält über eine Million echte Verbraucherbeschwerden zu Finanzprodukten 
-mit einem Freitextfeld (\textit{Consumer Complaint Narrative}) und kommt dem beschriebenen Szenario, 
-Beschwerden von Bürgern an eine öffentliche Institution, am nächsten.
+ausgewählt \parencite{cfpb2024}. Der Datensatz enthält über eine Million echte Verbraucherbeschwerden zu Finanzprodukten
+mit einem Freitextfeld (\textit{Consumer Complaint Narrative}) und kommt dem beschriebenen Szenario,
+Beschwerden von Bürgern an eine öffentliche Institution, am nächsten. Für die Analyse wird ein
+repräsentatives Sample von ca.\ 50.000 Beschwerden mit vorhandenem Freitext verwendet.
 
+Nach der Auswahl der relevanten Einträge werden zur Vorverarbeitung der Rohtexte folgende Schritte
+durchgeführt: Konvertierung in Kleinbuchstaben, Entfernung von Sonderzeichen, URLs und Zahlen,
+Tokenisierung, Entfernung von Stoppwörtern sowie Lemmatisierung.
 
-% Die folgenden Punkte müssen noch abgedeckt werden:
-
-% 2. Vorverarbeitung der Daten (Preprocessing)
-% 3. Mind. 2 Vektorisierungsmethoden
-% 4. Mind. 2 Techniken zur Themenextraktion
-% 5. Python-Bibliotheken für jeden Schritt
-
+% TODO: Vektorisierung und Themenextraktion
 
 % ============================================================
 % LITERATURVERZEICHNIS
