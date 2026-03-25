@@ -133,6 +133,12 @@ Auch \textcite[S.~1, 15]{albalawi2020topic} bestätigen, dass LDA und NMF bei ku
 Themen liefern. Die vorhandenen Metadaten des Datensatzes (Product, Issue) dienen zur Validierung
 der extrahierten Themen.
 
+Die für jeden Schritt des Workflows eingesetzten Python-Bibliotheken sind in
+\cref{tab:bibliotheken} im Anhang zusammengefasst. Alle verwendeten Bibliotheken sind
+Open Source, gut dokumentiert und in der NLP-Forschung etabliert. Die Visualisierung
+der Ergebnisse erfolgt mit \texttt{matplotlib} und \texttt{wordcloud}, um die extrahierten
+Themen für Entscheidungsträger anschaulich aufzubereiten.
+
 % ============================================================
 % LITERATURVERZEICHNIS
 % ============================================================
@@ -235,6 +241,42 @@ NMF (Non-negative Matrix Factorization) & Algebraisch, deterministisch & Reprodu
 Top2Vec & Embedding + Clustering & Automatische Topic-Anzahl; keine Stoppwort-Entfernung nötig; nutzt semantische Embeddings & Weniger etabliert; Ergebnisse abhängig vom Embedding-Modell & \texttt{top2vec} \\
 \hline
 BERTopic & Transformer + Clustering + c-TF-IDF & State-of-the-Art-Semantik; automatische Topic-Anzahl; modulare Pipeline & Hoher Rechenaufwand; Blackbox-Charakter; komplex in der Konfiguration & \texttt{bertopic} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Anhang D: Python-Bibliotheken pro Workflow-Schritt}
+
+\begin{table}[H]
+\centering
+\caption{Übersicht der eingesetzten Python-Bibliotheken pro Workflow-Schritt}
+\label{tab:bibliotheken}
+\footnotesize
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm} p{2.5cm} p{7.5cm}}
+\toprule
+\textbf{Workflow-Schritt} & \textbf{Bibliothek} & \textbf{Verwendung} \\
+\midrule
+Daten laden \& filtern & \texttt{pandas} & Einlesen der CSV-Datei; Filtern auf vorhandene Freitexte; Sampling \\
+\hline
+Vorverarbeitung & \texttt{spaCy} & Tokenisierung, Lemmatisierung, POS-Tagging \\
+\cline{2-3}
+ & \texttt{NLTK} & Stoppwort-Listen; ergänzende Textbereinigung \\
+\hline
+Vektorisierung & \texttt{scikit-learn} & TF-IDF-Vektorisierung (\texttt{TfidfVectorizer}) \\
+\cline{2-3}
+ & \texttt{gensim} & Word2Vec-Training (\texttt{Word2Vec}) \\
+\hline
+Themenextraktion & \texttt{gensim} & LDA-Modell (\texttt{LdaMulticore}) \\
+\cline{2-3}
+ & \texttt{scikit-learn} & NMF-Modell (\texttt{NMF}) \\
+\hline
+Visualisierung & \texttt{matplotlib} & Diagramme und Plots \\
+\cline{2-3}
+ & \texttt{wordcloud} & Wortwolken zur Themenvisualisierung \\
+\cline{2-3}
+ & \texttt{plotly} & Interaktive Visualisierungen \\
 \bottomrule
 \end{tabular}
 \end{table}
