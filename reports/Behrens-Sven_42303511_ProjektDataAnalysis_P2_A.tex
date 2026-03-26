@@ -107,23 +107,68 @@
 % ============================================================
 \section{Erläuterung der Implementierung}
 
-% TODO: Erläuterungstext hier einfügen (~200 Wörter, ca. 1/2 Seite)
-% Inhalt laut Aufgabenstellung:
-% - Link zum GitHub-Repository
-% - Kurze Beschreibung der Schritte dieser Phase:
-%   1. Installation der Abhängigkeiten (venv, requirements.txt)
-%   2. Daten laden und filtern
-%   3. Vorverarbeitung zu "sauberen Texten"
-%   4. Mind. 2 Vektorisierungsmethoden vergleichen
-%   5. Mind. 2 Themenextraktionstechniken anwenden
-%   6. Ergebnisse diskutieren
+Der vollständige, versionskontrollierte Quellcode ist im GitHub-Repository verfügbar:
+\url{https://github.com/svenb23/DataAnalysis}
 
-GitHub-Repository: \url{https://github.com/svenb23/DataAnalysis}
+Die Implementierung erfolgte in einer virtuellen Python-Umgebung (venv), deren Abhängigkeiten
+über eine \texttt{requirements.txt} reproduzierbar installiert werden können. Der Workflow ist
+in fünf modulare Skripte gegliedert, die sequentiell ausgeführt werden:
 
-% ============================================================
-% LITERATURVERZEICHNIS
-% ============================================================
-% \newpage
-% \printbibliography[title=Literaturverzeichnis]
+Im ersten Schritt (\texttt{01\_load\_data.py}) wurde die CFPB Consumer Complaint Database \parencite{cfpb2024} geladen
+und auf Einträge mit vorhandenem Freitext gefiltert. Aus den ca.~3,7~Millionen relevanten
+Beschwerden wurde ein zufälliges Sample von 50.000~Einträgen gezogen.
+
+Die Vorverarbeitung (\texttt{02\_preprocessing.py}) umfasste Lowercasing, Entfernung von
+Sonderzeichen, URLs und CFPB-Redaktionen sowie Tokenisierung, Stoppwort-Entfernung und
+Lemmatisierung mittels spaCy.
+
+Für die Vektorisierung (\texttt{03\_vectorization.py}) wurden TF-IDF (5.000~Features) und
+Word2Vec (100-dimensionale Vektoren) eingesetzt. TF-IDF erwies sich als geeigneterer Input
+für die nachfolgende Themenextraktion, da Word2Vec eine Aggregation auf Dokumentebene erfordert.
+
+Die Themenextraktion (\texttt{04\_topic\_modeling.py}) erfolgte mit LDA und NMF (jeweils 10~Topics).
+NMF lieferte schärfer abgegrenzte und besser interpretierbare Themen (siehe \cref{fig:topwords} im Anhang),
+während LDA stärkere Überlappungen zwischen Topics zeigte. Die extrahierten Themen (z.\,B. Debt Collection,
+Identity Theft, Mortgage) stimmen mit den Produktkategorien der Metadaten überein
+(siehe \cref{fig:products} im Anhang), was die Validität der Ergebnisse stützt.
+
+Abschließend wurden die Ergebnisse als Wortwolken (\cref{fig:wordclouds}), Balkendiagramme der Top-Wörter pro Topic und
+Verteilung der Dokumente über die Topics (\cref{fig:topicdist}) visualisiert (\texttt{05\_visualization.py}).
+
+\newpage
+\printbibliography[title=Literaturverzeichnis]
+
+\newpage
+\appendix
+\section*{Anhang}
+\addcontentsline{toc}{section}{Anhang}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../results/product_distribution.png}
+\caption{Verteilung der Produktkategorien im Sample (Top 10)}
+\label{fig:products}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../results/nmf_top_words.png}
+\caption{NMF -- Top 10 Wörter pro Topic}
+\label{fig:topwords}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../results/nmf_wordclouds.png}
+\caption{NMF -- Wortwolken pro Topic}
+\label{fig:wordclouds}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{../results/nmf_topic_distribution.png}
+\caption{NMF -- Verteilung der Dokumente über die Topics}
+\label{fig:topicdist}
+\end{figure}
 
 \end{document}
