@@ -1,0 +1,11 @@
+topic,lda,nmf
+1,"bank, card, call, tell, receive, not, check, say, money, time","report, credit, information, dispute, inaccurate, item, remove, delete, file, request"
+2,"identity, information, theft, request, fraudulent, open, item, balance, consumer, result","usc, section, consumer, reporting, state, right, agency, furnish, privacy, information"
+3,"consumer, usc, information, section, reporting, agency, right, state, furnish, privacy","payment, late, error, creditor, history, pay, statement, report, day, billing"
+4,"pay, balance, charge, owe, fee, tell, year, company, not, interest","not, bank, card, call, tell, pay, loan, receive, say, send"
+5,"reporting, fcra, dispute, information, violation, inaccurate, act, fair, consumer, code","debt, proof, collection, allege, pressume, doctrine, supply, estoppel, silence, exist"
+6,"payment, late, date, pay, day, error, time, statement, creditor, history","theft, identity, victim, result, block, fraudulent, information, item, report, consumer"
+7,"information, dispute, letter, send, remove, file, day, verify, company, receive","account, balance, open, number, date, fraudulent, collection, close, remove, belong"
+8,"inquiry, information, remove, unauthorized, date, authorize, consent, personal, identity, consumer","inquiry, hard, unauthorized, credit, authorize, report, fraudulent, remove, date, consent"
+9,"loan, mortgage, home, time, year, receive, score, month, company, student","app, cash, financial, resolution, unfair, act, platform, vulnerable, fail, significant"
+10,"debt, collection, provide, request, practice, act, original, law, violation, validation","code, banking, system, violation, reporting, consent, efficiency, impair, fair, report"
