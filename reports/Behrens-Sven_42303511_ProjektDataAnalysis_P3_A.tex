@@ -156,7 +156,22 @@ bestätigt. Dies deckt sich mit den Befunden von \textcite[S.~213]{wang2020empir
 einfachere Repräsentationen bei verrauschten Texten vergleichbare oder bessere Ergebnisse
 liefern als komplexere Modelle.
 
-% TODO: 4. Ausblick
+\section{Ausblick}
+
+Das vorgestellte Verfahren lässt sich in mehreren Bereichen weiterentwickeln. Zunächst könnte
+die Themenextraktion durch den Einsatz embeddingbasierter Verfahren wie BERTopic verbessert
+werden, das kontextualisierte Transformer-Embeddings mit Clustering kombiniert und dabei
+die Anzahl der Topics automatisch bestimmt \parencite[S.~13--15]{egger2022topic}. Darüber
+hinaus wäre eine systematische Optimierung der Topic-Anzahl über Coherence-Score-Verläufe
+sinnvoll, um die optimale Granularität der Themen zu ermitteln.
+
+Auf der Datenseite könnte eine stratifizierte Stichprobe nach Produktkategorien die Dominanz
+von Credit Reporting im Sample ausgleichen und so ein breiteres Themenspektrum abbilden.
+Ebenso wäre die Einbindung deutschsprachiger Datensätze ein relevanter nächster Schritt, um
+das Verfahren auf den ursprünglichen Anwendungsfall einer deutschsprachigen Kommunalverwaltung
+zu übertragen. Schließlich könnte die Integration der Ergebnisse in ein interaktives Dashboard
+den Zugang für Entscheidungsträger ohne technischen Hintergrund erheblich vereinfachen.
+
 % TODO: 5. Persönliche Reflexion
 
 % ============================================================
