@@ -172,7 +172,29 @@ das Verfahren auf den ursprünglichen Anwendungsfall einer deutschsprachigen Kom
 zu übertragen. Schließlich könnte die Integration der Ergebnisse in ein interaktives Dashboard
 den Zugang für Entscheidungsträger ohne technischen Hintergrund erheblich vereinfachen.
 
-% TODO: 5. Persönliche Reflexion
+\section{Persönliche Reflexion}
+
+Die einzelnen Bausteine dieses Projekts waren mir aus vorangegangenen Modulen bereits
+vertraut: Im \textit{Projekt: NLP} hatte ich eine umfangreiche Sentimentanalyse auf
+Amazon-Bewertungen durchgeführt, einschließlich Preprocessing-Pipeline und TF-IDF-Vektorisierung.
+Im Modul \textit{Unsupervised Learning und Feature Engineering} hatte ich verschiedene
+Clustering-Verfahren wie K-Means auf strukturierte Umfragedaten angewendet und
+Evaluationsmetriken wie den Silhouette Score eingesetzt.
+
+Die eigentliche Herausforderung dieses Projekts lag in der Kombination beider
+Disziplinen: NLP-Preprocessing auf Freitextdaten mit anschließender unüberwachter
+Themenextraktion. Während bei der Sentimentanalyse klare Labels (Sternebewertungen)
+als Ground Truth vorlagen und beim Clustering strukturierte Features direkt nutzbar
+waren, mussten hier Themen erst aus unstrukturiertem Text entdeckt werden. Die
+Evaluation über Coherence Scores statt Accuracy oder Silhouette Score erforderte
+ein anderes methodisches Denken. Besonders lehrreich war die Erkenntnis, dass die
+Wahl der Vektorisierung (TF-IDF vs.\ Word2Vec) einen größeren Einfluss auf die
+Ergebnisqualität hat als die Wahl des Topic Models selbst.
+
+Für zukünftige Projekte nehme ich mit, dass domänenspezifische Eigenheiten der Daten,
+wie die CFPB-Redaktionen oder die ungleiche Produktverteilung, frühzeitig in der
+Datenexploration identifiziert werden sollten, da sie die gesamte nachfolgende
+Analyse beeinflussen.
 
 % ============================================================
 % LITERATURVERZEICHNIS
