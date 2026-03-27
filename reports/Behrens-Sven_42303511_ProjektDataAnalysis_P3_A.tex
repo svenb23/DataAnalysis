@@ -121,7 +121,21 @@ Verfahren, LDA, NMF und K-Means-Clustering auf Word2Vec-Dokumentvektoren, themat
 analysiert. Der gesamte Code ist versionskontrolliert in einem öffentlichen GitHub-Repository
 verfügbar: \url{https://github.com/svenb23/DataAnalysis}
 
-% TODO: 2. Technischer Ansatz
+\section{Technischer Ansatz}
+
+Die Implementierung erfolgte in Python~3.13 mit einer virtuellen Umgebung (venv). Der Workflow
+ist in fünf eigenständige Skripte gegliedert, die sequentiell ausgeführt werden. Die
+Vorverarbeitung nutzt \texttt{spaCy} für Tokenisierung und Lemmatisierung sowie reguläre
+Ausdrücke zur Bereinigung von URLs, CFPB-Redaktionen (maskierte Felder mit \texttt{XX}) und
+Sonderzeichen. Für die Vektorisierung wurde \texttt{scikit-learn} (TF-IDF mit 5.000~Features)
+und \texttt{gensim} (Word2Vec mit 100-dimensionalen Vektoren) eingesetzt.
+
+Die Themenextraktion erfolgte mit LDA (\texttt{gensim}) und NMF (\texttt{scikit-learn}) auf der
+TF-IDF-Matrix. Ergänzend wurde K-Means-Clustering auf den aggregierten Word2Vec-Dokumentvektoren
+durchgeführt, um die Eignung beider Vektorisierungsansätze als Input für die Themenextraktion
+zu vergleichen. Die Qualität der Topics wurde über den Coherence Score ($c_v$) quantifiziert.
+Alle Ergebnisse wurden mit \texttt{matplotlib} und \texttt{wordcloud} visualisiert.
+
 % TODO: 3. Qualität der Daten und Ergebnisse
 % TODO: 4. Ausblick
 % TODO: 5. Persönliche Reflexion
