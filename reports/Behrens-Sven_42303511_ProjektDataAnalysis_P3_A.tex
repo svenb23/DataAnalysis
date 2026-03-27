@@ -102,15 +102,29 @@
 % FULL ABSTRACT (2 Seiten)
 % ============================================================
 
-% TODO: Inhalt laut Aufgabenstellung:
-% 1. Lösung der Aufgabe inhaltlich und konzeptionell beschreiben
-% 2. Technischer Ansatz kurz und übersichtlich darstellen
-% 3. Qualität der Daten und Ergebnisse der Analyse
-% 4. Ausblick: Wie kann das Verfahren weiter verbessert werden?
-% 5. Persönliche Reflexion:
-%    - Was hast Du auf persönlicher Ebene gelernt?
-%    - Auf welche Probleme bist Du gestoßen, und wie hast Du diese gelöst?
-%    - Was sind Deine Problemlösungsstrategien für ähnliche Projekte?
+\section{Problemstellung und Lösungsansatz}
+
+Ziel dieses Projekts war es, mithilfe von NLP-Techniken die häufigsten Themen aus einer Sammlung
+unstrukturierter Beschwerdetexte zu extrahieren und diese Informationen für Entscheidungsträger
+aufzubereiten. Als Datengrundlage diente die \textit{Consumer Complaint Database} der
+US-amerikanischen Verbraucherschutzbehörde CFPB \parencite{cfpb2024}, die rund 24,8~Millionen
+Beschwerdeeinträge zu Finanzprodukten enthält, davon ca.~3,7~Millionen mit Freitextnarrativen.
+Der Datensatz wurde gewählt, weil er dem Szenario, Beschwerden von Bürgern an eine öffentliche
+Institution, am nächsten kommt.
+
+Der Lösungsansatz folgt einem modularen Workflow in fünf Schritten: Zunächst wurden aus
+den 3,7~Millionen Einträgen mit vorhandenem Freitext 50.000~Beschwerden als repräsentatives
+Sample gezogen. Anschließend wurden die Texte über Lowercasing, Entfernung von Sonderzeichen
+und URLs, Tokenisierung, Stoppwort-Entfernung sowie Lemmatisierung vorverarbeitet. Die
+bereinigten Texte wurden mit TF-IDF und Word2Vec vektorisiert und schließlich mit drei
+Verfahren, LDA, NMF und K-Means-Clustering auf Word2Vec-Dokumentvektoren, thematisch
+analysiert. Der gesamte Code ist versionskontrolliert in einem öffentlichen GitHub-Repository
+verfügbar: \url{https://github.com/svenb23/DataAnalysis}
+
+% TODO: 2. Technischer Ansatz
+% TODO: 3. Qualität der Daten und Ergebnisse
+% TODO: 4. Ausblick
+% TODO: 5. Persönliche Reflexion
 
 % ============================================================
 % LITERATURVERZEICHNIS
