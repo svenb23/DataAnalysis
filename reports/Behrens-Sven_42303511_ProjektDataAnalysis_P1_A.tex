@@ -123,8 +123,8 @@ Methoden zwei Ansätze ausgewählt: \textit{TF-IDF} und \textit{Word2Vec}. Wie \
 zeigen, liefern einfachere Repräsentationen bei verrauschten Texten teils vergleichbare Ergebnisse wie
 komplexere Modelle. TF-IDF eignet sich als frequenzbasierte, dünnbesetzte Darstellung besonders gut
 als direkter Input für Topic Models. Word2Vec erzeugt ergänzend dichte semantische Vektoren,
-die Bedeutungsähnlichkeiten zwischen Wörtern abbilden. Der Vergleich beider Ansätze ermöglicht eine
-Bewertung, welche Repräsentation für die Themenextraktion bessere Ergebnisse liefert.
+die Bedeutungsähnlichkeiten zwischen Wörtern abbilden. Um beide Repräsentationen als Input für die
+Themenextraktion zu vergleichen, wird Word2Vec zusätzlich über K-Means-Clustering ausgewertet.
 
 Für die Extraktion der häufigsten Themen werden aus den in \cref{tab:themenextraktion} verglichenen
 Verfahren zwei Techniken ausgewählt: \textit{LDA} und \textit{NMF}. Wie \textcite[S.~11]{egger2022topic} in
@@ -132,7 +132,8 @@ ihrem Vergleich auf Twitter-Daten zeigen, liefern beide Verfahren interpretierba
 tendenziell schärfer abgegrenzte Topics erzeugt. LDA wird als probabilistisches Standardverfahren
 eingesetzt, NMF als deterministische Alternative, deren Ergebnisse reproduzierbar sind.
 Auch \textcite[S.~1, 15]{albalawi2020topic} bestätigen, dass LDA und NMF bei kurzen Texten die aussagekräftigsten
-Themen liefern. Die vorhandenen Metadaten des Datensatzes (Product, Issue) dienen zur Validierung
+Themen liefern. Zur quantitativen Bewertung der Topic-Qualität wird der Coherence Score ($c_v$) herangezogen.
+Die vorhandenen Metadaten des Datensatzes (Product, Issue) dienen zusätzlich zur Validierung
 der extrahierten Themen.
 
 Die für jeden Schritt des Workflows eingesetzten Python-Bibliotheken sind in
