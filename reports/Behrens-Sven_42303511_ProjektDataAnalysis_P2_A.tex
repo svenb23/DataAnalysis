@@ -123,14 +123,18 @@ Sonderzeichen, URLs und CFPB-Redaktionen sowie Tokenisierung, Stoppwort-Entfernu
 Lemmatisierung mittels spaCy.
 
 Für die Vektorisierung (\texttt{03\_vectorization.py}) wurden TF-IDF (5.000~Features) und
-Word2Vec (100-dimensionale Vektoren) eingesetzt. TF-IDF erwies sich als geeigneterer Input
-für die nachfolgende Themenextraktion, da Word2Vec eine Aggregation auf Dokumentebene erfordert.
+Word2Vec (100-dimensionale Vektoren) eingesetzt. Um beide Repräsentationen als Input für die
+Themenextraktion zu vergleichen, wurde Word2Vec zusätzlich über K-Means-Clustering ausgewertet.
 
-Die Themenextraktion (\texttt{04\_topic\_modeling.py}) erfolgte mit LDA und NMF (jeweils 10~Topics).
-NMF lieferte schärfer abgegrenzte und besser interpretierbare Themen (siehe \cref{fig:topwords} im Anhang),
-während LDA stärkere Überlappungen zwischen Topics zeigte. Die extrahierten Themen (z.\,B. Debt Collection,
-Identity Theft, Mortgage) stimmen mit den Produktkategorien der Metadaten überein
-(siehe \cref{fig:products} im Anhang), was die Validität der Ergebnisse stützt.
+Die Themenextraktion (\texttt{04\_topic\_modeling.py}) erfolgte mit drei Ansätzen: LDA und NMF
+auf der TF-IDF-Matrix sowie K-Means-Clustering auf den Word2Vec-Dokumentvektoren (jeweils 10~Topics).
+Die Qualität wurde über den Coherence Score ($c_v$) quantifiziert (\cref{fig:coherence}): NMF erzielte
+mit 0,65 einen deutlich höheren Wert als LDA mit 0,57 und lieferte schärfer abgegrenzte Topics
+(siehe \cref{fig:topwords} im Anhang). K-Means auf Word2Vec produzierte generischere Topics
+mit starken Überlappungen (\cref{fig:w2vclouds}), was TF-IDF als überlegenen Input für Topic Modeling bestätigt.
+Die extrahierten Themen (z.\,B. Debt Collection, Identity Theft, Mortgage) stimmen mit den
+Produktkategorien der Metadaten überein (siehe \cref{fig:products} im Anhang), was die
+Validität der Ergebnisse stützt.
 
 Abschließend wurden die Ergebnisse als Wortwolken (\cref{fig:wordclouds}), Balkendiagramme der Top-Wörter pro Topic und
 Verteilung der Dokumente über die Topics (\cref{fig:topicdist}) visualisiert (\texttt{05\_visualization.py}).
@@ -169,6 +173,20 @@ Verteilung der Dokumente über die Topics (\cref{fig:topicdist}) visualisiert (\
 \includegraphics[width=0.8\textwidth]{../results/nmf_topic_distribution.png}
 \caption{NMF -- Verteilung der Dokumente über die Topics}
 \label{fig:topicdist}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../results/w2v_kmeans_wordclouds.png}
+\caption{K-Means (Word2Vec) -- Wortwolken pro Cluster}
+\label{fig:w2vclouds}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{../results/coherence_comparison.png}
+\caption{Vergleich der Coherence Scores ($c_v$): LDA vs.\ NMF}
+\label{fig:coherence}
 \end{figure}
 
 \end{document}
