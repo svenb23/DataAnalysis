@@ -136,7 +136,26 @@ durchgeführt, um die Eignung beider Vektorisierungsansätze als Input für die 
 zu vergleichen. Die Qualität der Topics wurde über den Coherence Score ($c_v$) quantifiziert.
 Alle Ergebnisse wurden mit \texttt{matplotlib} und \texttt{wordcloud} visualisiert.
 
-% TODO: 3. Qualität der Daten und Ergebnisse
+\section{Datenqualität und Ergebnisse}
+
+Die Qualität des CFPB-Datensatzes ist insgesamt hoch, da es sich um reale, strukturiert erfasste
+Beschwerden handelt. Einschränkend ist zu bemerken, dass Freitextnarrative nur vorliegen, wenn
+Verbraucher der Veröffentlichung zugestimmt haben (ca.~15\,\% aller Einträge). Zudem maskiert
+die CFPB personenbezogene Daten mit Platzhaltern (\texttt{XX}), die im Preprocessing entfernt
+werden mussten. Das Sample ist thematisch von Credit Reporting dominiert (~66\,\%), was die
+Verallgemeinerbarkeit der Topics auf andere Beschwerdebereiche einschränkt.
+
+Die Ergebnisse der Themenextraktion zeigen klare Unterschiede zwischen den Verfahren. NMF
+erzielte mit einem Coherence Score ($c_v$) von 0,65 einen deutlich höheren Wert als LDA (0,57)
+und lieferte schärfer abgegrenzte, besser interpretierbare Topics. Die von NMF extrahierten
+Themen, darunter Debt Collection, Identity Theft, Mortgage und Billing Errors, stimmen
+mit den Produktkategorien der Metadaten überein, was die inhaltliche Validität bestätigt.
+K-Means-Clustering auf Word2Vec-Dokumentvektoren produzierte hingegen generischere Cluster
+mit starken Überlappungen, was TF-IDF als überlegene Eingaberepräsentation für Topic Modeling
+bestätigt. Dies deckt sich mit den Befunden von \textcite[S.~213]{wang2020empirical}, wonach
+einfachere Repräsentationen bei verrauschten Texten vergleichbare oder bessere Ergebnisse
+liefern als komplexere Modelle.
+
 % TODO: 4. Ausblick
 % TODO: 5. Persönliche Reflexion
 
