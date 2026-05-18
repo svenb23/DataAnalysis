@@ -21,6 +21,12 @@ VOCAB_PATH = PROJECT_ROOT / "data" / "tfidf_vectorizer.pkl"
 W2V_VECS_PATH = PROJECT_ROOT / "data" / "w2v_doc_vectors.npy"
 RESULTS_PATH = PROJECT_ROOT / "results"
 
+# NUM_TOPICS = 10 was selected based on the coherence sweep in
+# src/06_coherence_sweep.py: k=10 maximises c_v for LDA (0.599) and
+# K-Means on Word2Vec (0.643), and lies close to the NMF maximum
+# (0.653 vs. 0.706 at k=5). The trade-off favours k=10 because lower
+# values collapse semantically distinct complaint types (e.g. Debt
+# Collection vs. Identity Theft) into the same topic.
 NUM_TOPICS = 10
 RANDOM_SEED = 42
 

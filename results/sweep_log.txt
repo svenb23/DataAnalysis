@@ -1,0 +1,41 @@
+
+=== k = 5 ===
+  LDA     c_v = 0.5930
+  NMF     c_v = 0.7061
+  K-Means c_v = 0.6045
+
+=== k = 7 ===
+  LDA     c_v = 0.5951
+  NMF     c_v = 0.6896
+  K-Means c_v = 0.6193
+
+=== k = 10 ===
+  LDA     c_v = 0.5991
+  NMF     c_v = 0.6528
+  K-Means c_v = 0.6428
+
+=== k = 12 ===
+  LDA     c_v = 0.5788
+  NMF     c_v = 0.6369
+  K-Means c_v = 0.6101
+
+=== k = 15 ===
+  LDA     c_v = 0.5812
+  NMF     c_v = 0.6327
+  K-Means c_v = 0.6165
+
+=== k = 20 ===
+  LDA     c_v = 0.5667
+  NMF     c_v = 0.6113
+  K-Means c_v = 0.6117
+
+Results:
+     k     LDA     NMF  KMeans_W2V
+0   5  0.5930  0.7061      0.6045
+1   7  0.5951  0.6896      0.6193
+2  10  0.5991  0.6528      0.6428
+3  12  0.5788  0.6369      0.6101
+4  15  0.5812  0.6327      0.6165
+5  20  0.5667  0.6113      0.6117
+
+Saved: C:\Users\Sven-\OneDrive\Desktop\DataAnalysis\results\coherence_by_k.png
